@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 
 type LayoutProps = {
-  children: Object[];
+  children: any;
 };
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => {

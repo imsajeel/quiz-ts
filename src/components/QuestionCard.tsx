@@ -18,7 +18,7 @@ const QuestionCard: React.FC<Props> = ({
   totalQuestion,
 }) => {
   return (
-    <div className=".container	bg-gray-100 rounded-lg py-10 mb-5 shadow-lg">
+    <div className=".container bg-gray-100 rounded-lg py-10 my-10 shadow-lg">
       <p className="text-center text-gray-600">
         Quistion : {questionNum} / {totalQuestion}
       </p>

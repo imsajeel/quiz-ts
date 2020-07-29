@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QuestionCard from "./QuestionCard";
 import { fetchQuestions, Difficulty, QuestionState } from "../API";
+import Loading from "./Loading";
 
 const TOTAL_QUESTION = 10;
 
@@ -62,19 +63,21 @@ function QuestionPage() {
 
   return (
     <div className="text-center md:p-10">
-      <h1 className="text-3xl">Quiz</h1>
+      <h1 className="text-3xl mb-5">Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTION ? (
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-          onClick={startQuiz}
-        >
-          Begin Quiz
-        </button>
+        <div className="w-full text-center mb-5">
+          <button
+            className=" w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+            onClick={startQuiz}
+          >
+            Begin Quiz
+          </button>
+        </div>
       ) : null}
 
       {!gameOver ? <p className="score">Score: {score}</p> : null}
 
-      {loading ? <p>Loading</p> : null}
+      {loading ? <Loading /> : null}
       {!loading && !gameOver ? (
         <QuestionCard
           questionNum={number + 1}
