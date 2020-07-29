@@ -6,7 +6,7 @@ import Layout from "./components/layout";
 
 export default function App() {
   // eslint-disable-next-line
-  const [registered, setRegistered] = useState(false);
+  const [registered, setRegistered] = useState(true);
 
   return (
     <div>
