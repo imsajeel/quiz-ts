@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function UserData() {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <label>enter your email</label>
+    </div>
+  );
 }

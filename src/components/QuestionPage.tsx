@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import QuestionCard from "../components/QuestionCard";
+import QuestionCard from "./QuestionCard";
 import { fetchQuestions, Difficulty, QuestionState } from "../API";
 
 const TOTAL_QUESTION = 10;
@@ -61,10 +61,13 @@ function QuestionPage() {
   };
 
   return (
-    <div>
-      <h1>Quiz</h1>
+    <div className="text-center md:p-10">
+      <h1 className="text-3xl">Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTION ? (
-        <button className="start" onClick={startQuiz}>
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          onClick={startQuiz}
+        >
           Begin Quiz
         </button>
       ) : null}
@@ -87,9 +90,14 @@ function QuestionPage() {
       !gameOver &&
       userAnswers.length === number + 1 &&
       number !== TOTAL_QUESTION - 1 ? (
-        <button className="next" onClick={nextQuestion}>
-          Next
-        </button>
+        <div className="w-full text-center">
+          <button
+            className="w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={nextQuestion}
+          >
+            Next
+          </button>
+        </div>
       ) : null}
     </div>
   );
