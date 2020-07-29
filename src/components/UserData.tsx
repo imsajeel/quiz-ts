@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 export default function UserData() {
+  // eslint-disable-next-line
   const [values, setValues] = useState({ name: "" });
-
+  // eslint-disable-next-line
   const onChange = () => {};
-
+  // eslint-disable-next-line
   const onSubmit = () => {};
 
   return (
