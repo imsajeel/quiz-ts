@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   question: string;
@@ -17,6 +17,8 @@ const QuestionCard: React.FC<Props> = ({
   questionNum,
   totalQuestion,
 }) => {
+  const [selection, setSelection] = useState("");
+
   return (
     <div className=".container bg-gray-100 rounded-lg py-10 my-10 shadow-lg">
       <p className="text-center text-gray-600">
@@ -28,9 +30,17 @@ const QuestionCard: React.FC<Props> = ({
       />
       <div>
         {answers.map((answer, index) => (
-          <div key={index} className="w-full text-center">
+          <div
+            key={index}
+            className="w-full text-center m-5"
+            onClick={() => setSelection(answer)}
+          >
             <button
-              className="my-2 inline-block mx-2 w-11/12 text-left bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"
+              className={`inline-block w-11/12 text-left ${
+                answer === selection
+                  ? "bg-blue-500 text-white"
+                  : "bg-transparent text-blue-700"
+              } hover:bg-blue-500 focus:outline-none font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full`}
               disabled={userAnswer}
               value={answer}
               onClick={callback}
