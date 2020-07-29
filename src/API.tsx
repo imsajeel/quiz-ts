@@ -2,11 +2,11 @@ import { shuffleArray } from "./Utilities";
 
 export const fetchQuestions = async (
   amount: number,
-  difficulty: Difficulty
+  difficulty: Difficulty,
+  category: any
 ) => {
-  const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
+  const endpoint = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`;
   const data = await (await fetch(endpoint)).json();
-
   return data.results.map((question: Question) => ({
     ...question,
     answers: shuffleArray([
@@ -31,3 +31,10 @@ export type Question = {
 };
 
 export type QuestionState = Question & { answers: string[] };
+
+export const fetchCategory = async () => {
+  const endpoint = `https://opentdb.com/api_category.php`;
+  const data = await (await fetch(endpoint)).json();
+
+  return data.trivia_categories;
+};

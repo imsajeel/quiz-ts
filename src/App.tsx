@@ -5,12 +5,18 @@ import "./tailwind.output.css";
 import Layout from "./components/layout";
 
 export default function App() {
-  // eslint-disable-next-line
-  const [registered, setRegistered] = useState(true);
+  const [registered, setRegistered] = useState(false);
+  const [user, setUser] = useState({ difficulty: "medium", category: 9 });
 
   return (
     <div>
-      <Layout>{!registered ? <UserData /> : <QuestionPage />}</Layout>
+      <Layout>
+        {!registered ? (
+          <UserData setRegistered={setRegistered} setUser={setUser} />
+        ) : (
+          <QuestionPage userData={user} />
+        )}
+      </Layout>
     </div>
   );
 }

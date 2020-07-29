@@ -3,6 +3,10 @@ import QuestionCard from "./QuestionCard";
 import { fetchQuestions, Difficulty, QuestionState } from "../API";
 import Loading from "./Loading";
 
+type Props = {
+  userData: any;
+};
+
 const TOTAL_QUESTION = 10;
 
 type answerObject = {
@@ -12,7 +16,7 @@ type answerObject = {
   correctAnswer: string;
 };
 
-function QuestionPage() {
+const QuestionPage: React.FC<Props> = ({ userData }) => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
@@ -24,7 +28,11 @@ function QuestionPage() {
     setLoading(true);
     setGameOver(false);
 
-    const newQuestions = await fetchQuestions(TOTAL_QUESTION, Difficulty.EASY);
+    const newQuestions = await fetchQuestions(
+      TOTAL_QUESTION,
+      Difficulty.EASY,
+      userData.category
+    );
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -63,9 +71,14 @@ function QuestionPage() {
 
   return (
     <div className="text-center md:p-10">
-      <h1 className="text-3xl mb-5">Quiz</h1>
+      <h1 className="text-3xl mb-5 text-gray-700">
+        <b>Quiz</b>
+      </h1>
       {gameOver || userAnswers.length === TOTAL_QUESTION ? (
-        <div className="w-full text-center mb-5">
+        <div className="w-full text-center mb-5 mt-5">
+          <div className="text-gray-700 text-2xl mb-5 mt-10">
+            Hello <b> Mr. {userData.name}</b> Let's start uQuizy.
+          </div>
           <button
             className=" w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
             onClick={startQuiz}
@@ -75,7 +88,11 @@ function QuestionPage() {
         </div>
       ) : null}
 
-      {!gameOver ? <p className="score">Score: {score}</p> : null}
+      {!gameOver ? (
+        <p className="text-xl bg-blue-100 border-solid border-2 border-blue-500 w-1/2 m-auto p-2 rounded-full text-blue-500">
+          Score: <b>{score}</b>
+        </p>
+      ) : null}
 
       {loading ? <Loading /> : null}
       {!loading && !gameOver ? (
@@ -95,7 +112,7 @@ function QuestionPage() {
       number !== TOTAL_QUESTION - 1 ? (
         <div className="w-full text-center">
           <button
-            className="w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className={`w-1/2 bg-blue-500 active:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
             onClick={nextQuestion}
           >
             Next
@@ -104,6 +121,6 @@ function QuestionPage() {
       ) : null}
     </div>
   );
-}
+};
 
 export default QuestionPage;
