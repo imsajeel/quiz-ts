@@ -98,7 +98,7 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       {!gameOver ? (
         <motion.div
           animate={{
-            translateY: [1000, 0],
+            translateX: [1000, 0],
             opacity: [0, 1],
           }}
           className="text-xl bg-blue-100 border-solid border-2 border-blue-500 w-1/2 m-auto p-2 rounded-full text-blue-500"

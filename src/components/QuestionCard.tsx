@@ -67,12 +67,14 @@ const QuestionCard: React.FC<Props> = ({
   } else {
     return (
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ rotate: 359, scale: 1 }}
+        animate={{
+          rotate: [0, 358, 362, 358, 362, 358, 362, 360],
+          scale: [0, 1, 1, 1, 1, 1],
+        }}
         transition={{
           type: "spring",
           stiffness: 260,
-          damping: 20,
+          damping: 2000,
         }}
         className="container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg"
       >
