@@ -22,7 +22,7 @@ const QuestionCard: React.FC<Props> = ({
 
   if (question) {
     return (
-      <div className=".container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg">
+      <div className=".container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg px-5">
         <p className="text-center text-gray-600">
           Quistion : {questionNum} / {totalQuestion}
         </p>
@@ -34,7 +34,7 @@ const QuestionCard: React.FC<Props> = ({
           {answers?.map((answer, index) => (
             <div
               key={index}
-              className="w-full text-center m-5"
+              className="w-full text-center my-5"
               onClick={() => setSelection(answer)}
             >
               <button
