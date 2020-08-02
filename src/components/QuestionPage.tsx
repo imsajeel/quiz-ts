@@ -99,13 +99,12 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
         <QuestionCard
           questionNum={number + 1}
           totalQuestion={TOTAL_QUESTION}
-          question={questions[number].question}
-          answers={questions[number].answers}
+          question={questions[number]?.question}
+          answers={questions[number]?.answers}
           userAnswer={userAnswers ? userAnswers[number] : undefined}
           callback={checkAnswer}
         />
       ) : null}
-
       {!gameOver &&
       !gameOver &&
       userAnswers.length === number + 1 &&
