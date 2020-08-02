@@ -66,7 +66,7 @@ const QuestionCard: React.FC<Props> = ({
         <div className="py-10">
           <button
             className={` bg-blue-500 active:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded`}
-            onClick={() => (window.location.href = "/reload")}
+            onClick={() => window.location.reload()}
           >
             Try again
           </button>

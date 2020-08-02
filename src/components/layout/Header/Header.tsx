@@ -6,7 +6,7 @@ export default function Header() {
     <header className="bg-blue-500 flex justify-center items-center">
       <h1
         className="text-white text-2xl m-3 md:mx-10 cursor-pointer flex-1"
-        onClick={() => (window.location.href = "/reload")}
+        onClick={() => window.location.reload()}
       >
         uQuizy?
       </h1>
