@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 import { fetchCategory } from "../API";
+import { motion } from "framer-motion";
 
 type Props = {
   setRegistered: Function;
@@ -52,7 +53,12 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
     return <Loading />;
   } else {
     return (
-      <div className=".container w-11/12 md:w-1/2 bg-gray-100 rounded-lg py-10 mx-auto my-10 p-5 shadow-lg">
+      <motion.div
+        initial={{ translateX: 1000, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className=".container w-11/12 md:w-1/2 bg-gray-100 rounded-lg py-10 mx-auto my-10 p-5 shadow-lg"
+      >
         <h1 className="text-center text-3xl">Quiz form</h1>
         <form onSubmit={onSubmit}>
           <label
@@ -139,7 +145,7 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
     );
   }
 };

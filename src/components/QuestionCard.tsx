@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NotFound from "./NotFound";
+import { motion } from "framer-motion";
 
 type Props = {
   question: string;
@@ -22,7 +23,12 @@ const QuestionCard: React.FC<Props> = ({
 
   if (question) {
     return (
-      <div className=".container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg px-5">
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className=".container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg px-5"
+      >
         <p className="text-center text-gray-600">
           Quistion : {questionNum} / {totalQuestion}
         </p>
@@ -56,11 +62,20 @@ const QuestionCard: React.FC<Props> = ({
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     );
   } else {
     return (
-      <div className="container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ rotate: 359, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+        className="container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg"
+      >
         <NotFound />
         No quistions available in this section. Please try another!
         <div className="py-10">
@@ -71,7 +86,7 @@ const QuestionCard: React.FC<Props> = ({
             Try again
           </button>
         </div>
-      </div>
+      </motion.div>
     );
   }
 };

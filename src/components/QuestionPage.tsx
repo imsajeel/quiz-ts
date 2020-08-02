@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import QuestionCard from "./QuestionCard";
 import { fetchQuestions, Difficulty, QuestionState } from "../API";
 import Loading from "./Loading";
+import { motion } from "framer-motion";
 
 type Props = {
   userData: any;
@@ -70,7 +71,13 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
   };
 
   return (
-    <div className="text-center md:p-10">
+    <motion.div
+      animate={{
+        scale: [0.9, 1],
+        opacity: [0, 1],
+      }}
+      className="text-center md:p-10"
+    >
       <h1 className="text-3xl mb-5 text-gray-700">
         <b>Quiz</b>
       </h1>
@@ -89,9 +96,15 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       ) : null}
 
       {!gameOver ? (
-        <p className="text-xl bg-blue-100 border-solid border-2 border-blue-500 w-1/2 m-auto p-2 rounded-full text-blue-500">
+        <motion.div
+          animate={{
+            translateY: [1000, 0],
+            opacity: [0, 1],
+          }}
+          className="text-xl bg-blue-100 border-solid border-2 border-blue-500 w-1/2 m-auto p-2 rounded-full text-blue-500"
+        >
           Score: <b>{score}</b>
-        </p>
+        </motion.div>
       ) : null}
 
       {loading ? <Loading /> : null}
@@ -109,16 +122,19 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       !gameOver &&
       userAnswers.length === number + 1 &&
       number !== TOTAL_QUESTION - 1 ? (
-        <div className="w-full text-center">
+        <motion.div
+          animate={{ opacity: [0, 1] }}
+          className="w-full text-center"
+        >
           <button
             className={`w-1/2 bg-blue-500 active:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
             onClick={nextQuestion}
           >
             Next
           </button>
-        </div>
+        </motion.div>
       ) : null}
-    </div>
+    </motion.div>
   );
 };
 
