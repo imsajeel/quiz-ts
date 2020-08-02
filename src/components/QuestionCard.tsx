@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NotFound from "./NotFound";
 
 type Props = {
   question: string;
@@ -60,6 +61,7 @@ const QuestionCard: React.FC<Props> = ({
   } else {
     return (
       <div className="container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg">
+        <NotFound />
         No quistions available in this section. Please try another!
         <div className="py-10">
           <button
