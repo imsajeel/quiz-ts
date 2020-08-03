@@ -25,21 +25,16 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
-  console.log("Quistion", questions);
-  console.log("number", number);
-  console.log("userAnswers", userAnswers);
-  console.log("score", score);
-  console.log("gameOver", gameOver);
-
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
 
     const newQuestions = await fetchQuestions(
       TOTAL_QUESTION,
-      Difficulty.EASY,
+      userData.difficulty,
       userData.category
     );
+
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -101,7 +96,6 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
         </div>
       ) : null}
 
-      {console.log("re", questions.length !== 0)}
       {questions.length !== 0 && userAnswers.length === questions.length ? (
         <motion.div
           animate={{

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
-import { fetchCategory } from "../API";
+import { fetchCategory, Difficulty } from "../API";
 import { motion } from "framer-motion";
 
 type Props = {
@@ -18,7 +18,7 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
     name: "",
-    difficulty: "medium",
+    difficulty: Difficulty.EASY,
     category: 9,
   });
 
@@ -79,7 +79,7 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
             className="block text-gray-500 font-bold  mb-1 md:mb-0 pr-4"
             htmlFor="inline-full-name"
           >
-            Select Subject
+            Select Difficulty
           </label>
           <div className="relative">
             <select
@@ -88,9 +88,9 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
               id="grid-state"
               onChange={onChange}
             >
-              <option value={"easy"}>Easy</option>
-              <option value={"medium"}>Medium</option>
-              <option value={"hard"}>Hard</option>
+              <option value={Difficulty.EASY}>Easy</option>
+              <option value={Difficulty.MEDIUM}>Medium</option>
+              <option value={Difficulty.HARD}>Hard</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -106,7 +106,7 @@ const UserData: React.FC<Props> = ({ setRegistered, setUser }) => {
             className="block text-gray-500 font-bold  mb-1 md:mb-0 pr-4"
             htmlFor="inline-full-name"
           >
-            Select Difficulty
+            Select Subject
           </label>
           <div className="relative">
             <select

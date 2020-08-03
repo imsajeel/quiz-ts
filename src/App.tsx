@@ -6,8 +6,10 @@ import Layout from "./components/layout";
 
 export default function App() {
   const [registered, setRegistered] = useState(false);
-  const [user, setUser] = useState({ difficulty: "medium", category: 9 });
-
+  const [user, setUser] = useState({});
+  {
+    console.log(user);
+  }
   return (
     <div>
       <Layout>

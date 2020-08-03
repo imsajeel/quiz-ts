@@ -79,7 +79,7 @@ const QuestionCard: React.FC<Props> = ({
         className="container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg"
       >
         <NotFound />
-        No quistions available in this section. Please try another!
+        No questions available in this section. Please try another!
         <div className="py-10">
           <button
             className={` bg-blue-500 active:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded`}
