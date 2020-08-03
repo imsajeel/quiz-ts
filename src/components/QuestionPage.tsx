@@ -25,6 +25,12 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
+  console.log("Quistion", questions);
+  console.log("number", number);
+  console.log("userAnswers", userAnswers);
+  console.log("score", score);
+  console.log("gameOver", gameOver);
+
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
@@ -95,7 +101,8 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
         </div>
       ) : null}
 
-      {!gameOver ? (
+      {console.log("re", questions.length !== 0)}
+      {questions.length !== 0 && userAnswers.length === questions.length ? (
         <motion.div
           animate={{
             translateX: [1000, 0],
@@ -103,12 +110,19 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
           }}
           className="text-xl bg-blue-100 border-solid border-2 border-blue-500 w-1/2 m-auto p-2 rounded-full text-blue-500"
         >
-          Score: <b>{score}</b>
+          Your score is :
+          <b>
+            {" "}
+            {score}/{TOTAL_QUESTION}
+          </b>
+          <br />
+          Which is
+          <b> {(score * 100) / TOTAL_QUESTION}%</b>
         </motion.div>
       ) : null}
 
       {loading ? <Loading /> : null}
-      {!loading && !gameOver ? (
+      {!loading && !gameOver && userAnswers.length !== questions.length ? (
         <QuestionCard
           questionNum={number + 1}
           totalQuestion={TOTAL_QUESTION}
@@ -123,7 +137,8 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       userAnswers.length === number + 1 &&
       number !== TOTAL_QUESTION - 1 ? (
         <motion.div
-          animate={{ opacity: [0, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="w-full text-center"
         >
           <button
