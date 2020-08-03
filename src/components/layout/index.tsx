@@ -8,7 +8,7 @@ type LayoutProps = {
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   return (
-    <div className=" min-h-screen flex flex-col">
+    <div className=" min-h-screen overflow-x-hidden w-screen flex flex-col">
       <Header />
 
       <main className="flex-grow bg-gray-200 min-h-full	">{children}</main>

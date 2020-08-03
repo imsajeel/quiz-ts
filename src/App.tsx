@@ -7,9 +7,7 @@ import Layout from "./components/layout";
 export default function App() {
   const [registered, setRegistered] = useState(false);
   const [user, setUser] = useState({});
-  {
-    console.log(user);
-  }
+
   return (
     <div>
       <Layout>

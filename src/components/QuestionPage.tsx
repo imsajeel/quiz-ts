@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import QuestionCard from "./QuestionCard";
-import { fetchQuestions, Difficulty, QuestionState } from "../API";
+import { fetchQuestions, QuestionState } from "../API";
 import Loading from "./Loading";
 import { motion } from "framer-motion";
 
@@ -82,19 +82,6 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       <h1 className="text-3xl mb-5 text-gray-700">
         <b>Quiz</b>
       </h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTION ? (
-        <div className="w-full text-center mb-5 mt-5">
-          <div className="text-gray-700 text-2xl mb-5 mt-10">
-            Hello <b> Mr. {userData.name}</b> Let's start uQuizy.
-          </div>
-          <button
-            className=" w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
-            onClick={startQuiz}
-          >
-            Begin Quiz
-          </button>
-        </div>
-      ) : null}
 
       {questions.length !== 0 && userAnswers.length === questions.length ? (
         <motion.div
@@ -113,6 +100,20 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
           Which is
           <b> {(score * 100) / TOTAL_QUESTION}%</b>
         </motion.div>
+      ) : null}
+
+      {gameOver || userAnswers.length === TOTAL_QUESTION ? (
+        <div className="w-full text-center mb-5 mt-5">
+          <div className="text-gray-700 text-2xl mb-5 mt-10">
+            Hello <b> Mr. {userData.name}</b> Let's start uQuizy.
+          </div>
+          <button
+            className=" w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+            onClick={startQuiz}
+          >
+            {userAnswers.length === TOTAL_QUESTION ? "Try again" : "Begin Quiz"}
+          </button>
+        </div>
       ) : null}
 
       {loading ? <Loading /> : null}
