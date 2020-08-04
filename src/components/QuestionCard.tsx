@@ -9,6 +9,7 @@ type Props = {
   userAnswer: any;
   questionNum: number;
   totalQuestion: number;
+  cardDisplay: boolean;
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const QuestionCard: React.FC<Props> = ({
   userAnswer,
   questionNum,
   totalQuestion,
+  cardDisplay,
 }) => {
   const [selection, setSelection] = useState("");
 
@@ -27,7 +29,8 @@ const QuestionCard: React.FC<Props> = ({
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className=".container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg px-5"
+        className={`.container bg-gray-100 rounded-lg py-10 my-10 mx-auto shadow-lg px-5`}
+        style={{ display: cardDisplay ? "block" : "none" }}
       >
         <p className="text-center text-gray-600">
           Quistion : {questionNum} / {totalQuestion}

@@ -117,7 +117,7 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
       ) : null}
 
       {loading ? <Loading /> : null}
-      {!loading && !gameOver && userAnswers.length !== questions.length ? (
+      {!loading && !gameOver ? (
         <QuestionCard
           questionNum={number + 1}
           totalQuestion={TOTAL_QUESTION}
@@ -125,6 +125,7 @@ const QuestionPage: React.FC<Props> = ({ userData }) => {
           answers={questions[number]?.answers}
           userAnswer={userAnswers ? userAnswers[number] : undefined}
           callback={checkAnswer}
+          cardDisplay={questions.length !== userAnswers.length ? true : false}
         />
       ) : null}
       {!gameOver &&
